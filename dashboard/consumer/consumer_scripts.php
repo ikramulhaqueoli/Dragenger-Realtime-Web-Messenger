@@ -5,12 +5,10 @@
 		{
 			if(responseText.length > 10)
 			{
-				document.getElementById("search_result").classList.add('user-tile');
 				document.getElementById("search_result").innerHTML = responseText;
 			}
 			else
 			{
-				document.getElementById("search_result").classList.remove('user-tile');
 				document.getElementById("search_result").innerHTML = '<span style="color:white;margin:10px"><i>No users found!</i></span>';
 			}
 		}
@@ -195,7 +193,6 @@
 			xhttp.open("POST","../../repositories/consumer_repository.php", true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send(post_data+"&ajax_consumer_purpose=load_profile");
-			current_consumer_id = -1;
 		}
 		function load_conversation(userId)
 		{

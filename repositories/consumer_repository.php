@@ -21,12 +21,12 @@
 		foreach ($data as $row)
 		{
 			echo '
-					<table onclick="javascript:load_profile('.$row["id"].',3)">
+					<table class="user-tile" onclick="javascript:load_profile('.$row["id"].',3)">
 					<tr>
-					<td>
+					<td style="width:20%;">
 						<img src="'.user_profile_img_src($row["id"]).'"class="list-tile-image">
 					</td>
-					<td>
+					<td style="width:80%;">
 						<table>
 						<tr><td>
 						<label class="list-name-label">'.$row["name"].'</label>
@@ -47,12 +47,12 @@
 		foreach ($data as $row)
 		{
 			echo '
-					<table onclick="javascript:load_profile('.$row["id"].',0)">
+					<table class="user-tile" onclick="javascript:load_profile('.$row["id"].',0)">
 					<tr>
-					<td>
+					<td style="width:20%;">
 						<img src="'.user_profile_img_src($row["id"]).'"class="list-tile-image">
 					</td>
-					<td>
+					<td style="width:80%;">
 						<table>
 						<tr><td>
 						<label class="list-name-label">'.$row["name"].'</label>
@@ -75,12 +75,12 @@
 			$friend_state = 1;
 			if($row["sender_id"] == $row["id"]) $friend_state = 2;
 			echo '
-					<table onclick="javascript:load_profile('.$row["id"].','.$friend_state.')">
+					<table class="user-tile" onclick="javascript:load_profile('.$row["id"].','.$friend_state.')">
 					<tr>
-					<td>
-						<img src="'.user_profile_img_src($row["id"]).'" class="list-tile-image">
+					<td style="width:20%;">
+						<img src="'.user_profile_img_src($row["id"]).'"class="list-tile-image">
 					</td>
-					<td>
+					<td style="width:80%;">
 						<table>
 						<tr><td>
 						<label class="list-name-label">'.$row["name"].'</label>

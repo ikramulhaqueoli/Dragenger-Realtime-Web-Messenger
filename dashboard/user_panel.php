@@ -20,7 +20,7 @@
 				{
 					document.getElementById("change_btn").innerHTML = "";
 					document.getElementById("save_img_btns").innerHTML = 
-					'<form id="img_select_form"action="../../repositories/file_manager.php"method="post"enctype="multipart/form-data"><input type="file"id="profile_image"name="profile_image"onchange="loadFile(event)"><input type="submit"name="save_profile_image"id="save_profile_image"value="Save Image"></form>';
+					'<form id="img_select_form"action="../../repositories/file_manager.php"method="post"enctype="multipart/form-data"><input type="file"id="profile_image"name="profile_image"onchange="loadFile(event)"><input type="submit"name="save_profile_image"id="save_profile_image"class="button-success"value="Save Image"></form>';
 				}
 			}
 			var profile_img_path = "";
