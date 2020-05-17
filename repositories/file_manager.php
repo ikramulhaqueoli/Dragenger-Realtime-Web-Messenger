@@ -4,7 +4,7 @@
 	{
 		$resultHtml = "";
 		$target_dir = "../data/images/profile/";
-		$target_file = $target_dir . $_SESSION["id"];
+		$target_file = $target_dir . $_SESSION["id"].'_'.date_timestamp_get(date_create());
 		$imageFileType = strtolower(pathinfo($_FILES["profile_image"]["name"],PATHINFO_EXTENSION));
 		if($_FILES["profile_image"]["name"] == '' || $_FILES["profile_image"]["size"] == 0)
 		{
@@ -20,10 +20,14 @@
 		}
 		else
 		{
+			$img_files = glob('../data/images/profile/'.$_SESSION["id"].'_*');
+			foreach ($img_files as $single_file)
+			{
+				unlink($single_file);
+			}
 			if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_file))
 			{
 				$resultHtml = "<span style='color:green'>Image updated successfully!</span>";
-
 			}
 			else $resultHtml = "<span style='color:red'>Sorry! Image upload failed!</span>";
 		}

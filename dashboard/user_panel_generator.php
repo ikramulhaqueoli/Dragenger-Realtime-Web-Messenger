@@ -5,10 +5,13 @@
 	$option = "";
 	$button_name = "";
 	$img_path = '../../res/default_profile';
-	if(file_exists($_SERVER['DOCUMENT_ROOT'].'/dragenger/data/images/profile/'.$_SESSION["id"]))
+	$img_files = glob('../data/images/profile/'.$_SESSION["id"].'_*');
+	foreach ($img_files as $single_file)
 	{
-		$img_path = '../../data/images/profile/'.$_SESSION["id"];
+		$img_path = "../".$single_file;
+		break;
 	}
+
 	if(isset($_GET["option"]))
 	{
 		if($_GET["option"] == "details_only")

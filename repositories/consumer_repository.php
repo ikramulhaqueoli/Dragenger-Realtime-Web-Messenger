@@ -9,9 +9,10 @@
 	function user_profile_img_src($id)
 	{
 		$img_path = '../../res/default_profile';
-		if(file_exists($_SERVER['DOCUMENT_ROOT'].'/dragenger/data/images/profile/'.$id))
+   		$img_files = glob('../data/images/profile/'.$id.'_*');
+		foreach ($img_files as $single_file)
 		{
-			$img_path = '../../data/images/profile/'.$id;
+			return "../".$single_file;
 		}
 		return $img_path;
 	}
