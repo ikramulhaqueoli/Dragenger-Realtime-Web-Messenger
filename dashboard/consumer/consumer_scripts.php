@@ -330,7 +330,7 @@
 		//refresh_message();
 
 		//refresh_continuously
-		setInterval(refresh_message, 3000);
+		setInterval(refresh_message, 500);
 		setInterval(refresh_activity, 15000);
 
 		//auto_resizable_text_area

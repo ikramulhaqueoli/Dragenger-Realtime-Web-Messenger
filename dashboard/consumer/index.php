@@ -10,7 +10,7 @@
 ?>
 	<head>
         <link rel="stylesheet"type="text/css"href="../../styles/dstyle.css">
-        <title><?php if(isset($_SESSION["name"])) echo $_SESSION["name"]; ?> । Dashboard </title>
+        <title><?php if(isset($_SESSION["name"])) echo $_SESSION["name"]; ?> | Dashboard </title>
     </head>
     <body class = "bodycss">
         <div class = "leftboxcss"style="height:auto;background-color:#000524;">
@@ -55,7 +55,7 @@
 				<!-- here will be the azax html request hit -->
 			</div>
 		</div>
-		<audio id="notification_audio" src="../../res/when.wav" preload="auto"></audio>
+		<audio id="notification_audio" src="../../res/done-for-you.ogg" preload="auto"></audio>
 		<script>load_user_details("details_only");</script>
     </body> 
 </html>
