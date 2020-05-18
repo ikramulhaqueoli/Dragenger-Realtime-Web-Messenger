@@ -1,6 +1,7 @@
 <head>
 	<script>
-		var current_consumer_id = -1;
+		var currentConsumerId = -1;
+		var playNotificationSound = false;
 		function assignListResultResponse(responseText)
 		{
 			if(responseText.length > 10)
@@ -188,6 +189,7 @@
 				{
 					document.getElementById("consumer_details_div").innerHTML = xhttp.responseText;
 					if(friend_state == 3) load_conversation(userId);
+					playNotificationSound = false;
 				}
 			}
 			xhttp.open("POST","../../repositories/consumer_repository.php", true);
@@ -196,7 +198,6 @@
 		}
 		function load_conversation(userId)
 		{
-
 			var my_id = <?php echo $_SESSION["id"]; ?>;
 			var my_name = <?php echo '"'.$_SESSION["name"].'"'; ?>;
 			var my_username = <?php echo '"'.$_SESSION["username"].'"'; ?>;
@@ -214,8 +215,8 @@
 			var message_sending_div = '<textarea id="message-text-box" class="message-text-box" rows="1" onkeydown="autosizeMessageBox();" style="" placeholder="Type a message" onkeypress="if(event.keyCode === 13) send_message_to('+userId+');"></textarea>';
 			message_sending_div += '<button id="send_btn" class="button-success" style="width:10%;height:45px;font-style:bold;" onclick="send_message_to('+userId+');">Send</button>';
 			document.getElementById("message_sending_div").innerHTML = message_sending_div;
-			current_consumer_id = userId;
-			refresh_message(current_consumer_id);
+			currentConsumerId = userId;
+			refresh_message(currentConsumerId);
 		}
 		function send_message_to(userId)
 		{
@@ -253,7 +254,7 @@
 		}
 		function refresh_message()
 		{
-			var userId = current_consumer_id;
+			var userId = currentConsumerId;
 			if(userId == -1) return;
 			var post_data = "user_id=" + userId;
 			var xhttp = new XMLHttpRequest();
@@ -265,10 +266,16 @@
 					var new_message_row = document.createElement("tr");
 					var new_message_col = document.createElement("td");
 					new_message_col.innerHTML = xhttp.responseText;
+					if(xhttp.responseText.length < 10) return;
 					new_message_row.appendChild(new_message_col);
 					var newMsgDiv = document.getElementById("messages_div");
 					newMsgDiv.appendChild(new_message_row);
 					newMsgDiv.scrollTop = newMsgDiv.scrollHeight;
+					if(playNotificationSound)
+					{
+						document.getElementById("notification_audio").play();
+					}
+					playNotificationSound = true;
 				}
 			}
 			xhttp.open("POST","../../repositories/consumer_repository.php", true);
@@ -277,7 +284,7 @@
 		}
 		function refresh_activity()
 		{
-			var userId = current_consumer_id;
+			var userId = currentConsumerId;
 			if(userId == -1) return;
 			var post_data = "user_id=" + userId;
 			var xhttp = new XMLHttpRequest();

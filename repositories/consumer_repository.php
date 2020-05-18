@@ -99,7 +99,7 @@
 
 	function generate_html_message_response($message_data)
 	{
-		if($message_data["sender_id"] == $_SESSION["id"])
+		if($message_data["sender_id"] != $_SESSION["id"])
 		{
 			echo '<div class="message-container"id="new_message_div"title="'.$message_data["id"].'">
   			<img src="'.user_profile_img_src($message_data["sender_id"]).'" alt="Avatar">
