@@ -35,7 +35,7 @@
 						</tr>
 						<tr>
 							<td>
-								<a ><ul type="none"><li><input type="button" onclick='location.href="consumer_show_all.php"' class="button-secondary"style="margin-right:5%;"value = "Show all users"></li></ul></a>
+								<a ><ul type="none"><li><input type="button" onclick='location.href="user_show_all.php"' class="button-secondary"style="margin-right:5%;"value = "Show all users"></li></ul></a>
 							</td>
 						</tr>
 						</tr>

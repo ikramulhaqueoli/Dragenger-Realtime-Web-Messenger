@@ -73,22 +73,22 @@
 	{
 		foreach ($data as $row)
 		{
-			$friend_state = 1;
-			if($row["sender_id"] == $row["id"]) $friend_state = 2;
+			$type_text = '<span style="color:rgb(0, 35, 87);font-style:italic;font-size:12px;text-align:right;white-space: nowrap;">Request received</span>';
+			if($row["friend_state"] == 1) $type_text = '<span style="color:rgb(0, 92, 6);font-style:italic;font-size:12px;text-align:right;white-space: nowrap;">Request sent</span>';
 			echo '
-					<table class="user-tile" onclick="javascript:load_profile('.$row["id"].','.$friend_state.')">
+					<table class="user-tile" onclick="javascript:load_profile('.$row["id"].','.$row["friend_state"].')">
 					<tr>
 					<td style="width:20%;">
 						<img src="'.user_profile_img_src($row["id"]).'"class="list-tile-image">
 					</td>
 					<td style="width:80%;">
 						<table>
-						<tr><td>
+						<tr><td colspan="2">
 						<label class="list-name-label">'.$row["name"].'</label>
 						</td></tr>
 						<tr><td>
 						<label class="list-username-label">@'.$row["username"].'</label>
-						</td></tr>
+						</td><td style="text-align:right;padding:10px;">'.$type_text.'</td></tr>
 						</table>
 					</td>
 					</tr>
@@ -140,7 +140,9 @@
 
 	else if(isset($_GET["get_friend_req_list"]))
 	{
-		$query = "SELECT u.id, u.name, u.username, u.email, u.birthdate, u.gender, rq.sender_id FROM users u, friend_req_list rq WHERE id in (SELECT sender_id from friend_req_list  where receiver_id = ".$_SESSION["id"]."  union all SELECT receiver_id from friend_req_list where sender_id = ".$_SESSION["id"].") and type = 'consumer' and id <> ".$_SESSION["id"].";";
+		$query = "(SELECT u.id, u.name, u.username, u.email, u.birthdate, u.gender, 1 as friend_state FROM users u WHERE id in (SELECT receiver_id from friend_req_list where sender_id = ".$_SESSION["id"].") and type = 'consumer') 
+		union all 
+		(SELECT u.id, u.name, u.username, u.email, u.birthdate, u.gender, 2 as friend_state FROM users u WHERE id in (SELECT sender_id from friend_req_list where receiver_id = ".$_SESSION["id"].") and type = 'consumer')";
 		generate_friend_reqlist_response(get_consumer_list($query));
 	}
 

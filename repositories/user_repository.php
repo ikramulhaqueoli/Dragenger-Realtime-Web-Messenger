@@ -93,7 +93,13 @@
 			return execute($query);
 		}
 	}
-
+	
+	function get_all_users()
+	{
+		$query = "SELECT * FROM users";
+		return get($query);
+	}
+	
 	function get_all_members()
 	{
 		$query = "SELECT * FROM users WHERE type <> 'consumer'";

@@ -9,7 +9,7 @@
 ?>
 <html>
     <head>
-        <title>Admin-panel members' list | Administrator | Dragenger</title>
+        <title>All users' list | Administrator | Dragenger</title>
         <link rel="stylesheet"type="text/css"href="..\..\styles\dstyle.css">
     </head>
 
@@ -19,8 +19,8 @@
 			<fieldset style="height: auto;">
 			<legend class="headercss">Admin-panel members' list</legend>
             <?php 
-                $members_data = get_all_members();
-                echo '<center><table style="width: 1200px; height: 150px; overflow-y:auto;" class="centercss" border="1">';
+                $members_data = get_all_users();
+                echo '<center><table style="width: 1200px;" class="centercss" border="1">';
                 echo "<div>
                     <tr>
                     <td>ID</td>
@@ -50,8 +50,8 @@
             ?>
 				
 			</fieldset>
+			<br><br>
         </div>
-		<br><br>
         <?php include "footer.php"; ?>
     </body>
 </html>

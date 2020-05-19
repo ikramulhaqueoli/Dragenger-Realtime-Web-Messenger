@@ -14,12 +14,13 @@
     </head>
 
     <body class="bodycss">
+		<br>
         <div class="headercss">
-            <fieldset style="height: 500px;">
+            <fieldset style="height: auto;">
             <legend class="headercss">Moderator's consumers' list</legend>
             <?php 
                 $consumers_data = get_all_consumers();
-                echo '<center><table style="width: 1200px; height: 150px;" class="centercss" border="1">';
+                echo '<center><table style="width: 1200px; height: 150px;overflow-y:auto;" class="centercss" border="1">';
                 echo "<div>
                     <tr>
                     <td>ID</td>
@@ -53,6 +54,7 @@
                 
             </fieldset>
         </div>
+		<br><br>
         <?php include "footer.php"; ?>
     </body>
 </html>
